@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+ <html>
+  <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta http-equiv="Content-Style-Type" content="text/css">
+   <meta name="viewport" content="width=device-width,initial-scale=l">
+   <meta http-equiv="content-language" content="ja">
+   <link rel="SHORTCUT ICON" href="favicon.ico">
+   <link rel="stylesheet" href="style.css" type="text/css">
+   <script type="text/javascript" src="test.js"></script>
+
+  </head>
+  <body style="background-image:url(1.png);background-size:cover;">
+  
+  <script>
+  var korean_items = ['오선에 친구를 만났어요.','그리고 오후에 공부를 했어요.','한국에서 한국말을 배워요.','구리고 아르바이트도 해요.','그리고 비도 맗이 와요.','요룸은 더워요.','서울의 여름 날씨가 어때요?','음식 맛이 어때요?','어떤 음억을 좋아해요?','아침을 민옸지만 배가 고파요.','그 가개는 몰건이 솧시만 값이 솜 비싸요.','구 사람은 멋있고 친절해요.','한국말이 오렵지말 재미있어요.','3층은 교실이고 2층은 이에요.','우리 아버지는 요리도 하고 청소해요.'];
+  var japanese_items = ['午前に友達と会いました。','そして午後に勉強をしました。','韓国では韓国語を勉強します。','そしてアルバイトもします。','そして雨がたくさん降ります。','夏は暑いです。','ソウルの夏の天気はどうですか?','食べ物の味はどうですか?','どんな音楽が好きですか?','朝食を食べましたが、お腹が空いています。','その店の品物は良いですが、値段が少し高いです。','その人は素敵で、親切です。','韓国語は難しいですが、おもしろいです。','3階は教室で、2階は事務室です。','私の父は料理もするし、掃除もします。'];
+  //console.log('出力結果: ' + japanese_items.length);
+  //console.log('korean_items[0]:' + korean_items[0]);
+
+var count = 0;
+ 
+function timer1(){
+  count += 1;
+  target = document.getElementById("timer_disp");
+  target.innerHTML = count;
+  if (count>=250) {
+   target = document.getElementById("timer_disp");
+   target.innerHTML = "";
+   target = document.getElementById("japanese_items_disp");
+   target.innerHTML = "終わり！"//japanese_items[rndi];
+   target = document.getElementById("answer_box");
+   target.innerHTML = "";
+   target = document.getElementById("output");
+   target.innerHTML = "";
+  }
+}
+ 
+setInterval(timer1, 1000, "終わりです！");
+
+  var rndi = Math.floor( Math.random() * japanese_items.length );
+    var kanswer=korean_items[rndi];
+    var janswer=japanese_items[rndi];
+  //console.log(rndi);
+
+  window.onload = function(){
+   target = document.getElementById("japanese_items_disp");
+   target.innerHTML = janswer;//japanese_items[rndi];
+  }
+
+  function OnButtonClick() {
+   var yourans = document.getElementById("answer_text").value;
+   //console.log(yourans);
+   console.log(korean_items[rndi]);
+   if (yourans == kanswer) {//korean_items[rndi]) {
+    target = document.getElementById("output");
+    target.innerHTML = "正解！<br><input type=\"button\" value=\"次の問題へ\" onclick=\"clicked_again();\">";
+    japanese_items.splice( rndi,1 );
+    korean_items.splice( rndi,1 );
+    console.log(korean_items);
+   } else {
+    target = document.getElementById("output");
+    target.innerHTML = "不正解！答えは……<br>"+kanswer+"を入力しよう";
+   }
+  }
+  
+  function clicked_again() {
+    if (japanese_items.length <= 0) {
+     target = document.getElementById("japanese_items_disp");
+     target.innerHTML = "終わり！"//japanese_items[rndi];
+     target = document.getElementById("answer_box");
+     target.innerHTML = "";
+     target = document.getElementById("output");
+     target.innerHTML = "";
+    } else {
+    rndi = Math.floor( Math.random() * japanese_items.length );
+    console.log(rndi);
+    kanswer=korean_items[rndi];
+    janswer=japanese_items[rndi];
+    target = document.getElementById("japanese_items_disp");
+    target.innerHTML = janswer;//japanese_items[rndi];
+    target = document.getElementById("answer_box");
+    target.innerHTML = "<input type=\"text\" value=\"\" id=\"answer_text\"><input type=\"button\" value=\"チェック\" onclick=\"OnButtonClick();\">";
+    target = document.getElementById("output");
+    target.innerHTML = "";
+    console.log(kanswer);
+    }
+  }
+  
+  </script>
+<div id="bodycover" style="background-color: rgba(255,255,255,0.5);text-align:center;font-size:20px;">
+  <div id="japanese_items_disp"></div>
+  <div id="answer_box"><input type="text" value="" id="answer_text">
+  <input type="button" value="チェック" onclick="OnButtonClick();"></div>
+  <div id="output"></div>
+    <div id="timer_disp"></div>
+    
+    </div>
+    <a href="20211020_bg.html">BGありはこちら</a>
+  </body>
+ </html>
