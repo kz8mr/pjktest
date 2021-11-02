@@ -1,0 +1,10 @@
+#checkbutton	{
+	width: 50%;
+}
+input	{
+	height: 50px;
+	width: 75%;
+}
+#answer_text	{
+	font-size: 45px;
+}
