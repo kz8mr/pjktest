@@ -8,3 +8,7 @@ input	{
 #answer_text	{
 	font-size: 45px;
 }
+
+a:link		{ color: #0000ff }
+a:visited	{ color: #0000ff }
+a:hover		{ color: #ff0000 }
