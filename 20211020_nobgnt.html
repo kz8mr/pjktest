@@ -10,7 +10,7 @@
    <script type="text/javascript" src="test.js"></script>
 
   </head>
-  <body style="background-image:url(1.jpg);background-size:cover;">
+  <body style="background-image:url(1.png);background-size:cover;">
   
   <script>
   var korean_items = ['오선에 친구를 만났어요.','그리고 오후에 공부를 했어요.','한국에서 한국말을 배워요.','구리고 아르바이트도 해요.','그리고 비도 맗이 와요.','요룸은 더워요.','서울의 여름 날씨가 어때요?','음식 맛이 어때요?','어떤 음억을 좋아해요?','아침을 민옸지만 배가 고파요.','그 가개는 몰건이 솧시만 값이 솜 비싸요.','구 사람은 멋있고 친절해요.','한국말이 오렵지말 재미있어요.','3층은 교실이고 2층은 이에요.','우리 아버지는 요리도 하고 청소해요.'];
@@ -18,25 +18,7 @@
   //console.log('出力結果: ' + japanese_items.length);
   //console.log('korean_items[0]:' + korean_items[0]);
 
-var count = 0;
  
-function timer1(){
-  count += 1;
-  target = document.getElementById("timer_disp");
-  target.innerHTML = count;
-  if (count>=250) {
-   target = document.getElementById("timer_disp");
-   target.innerHTML = "";
-   target = document.getElementById("japanese_items_disp");
-   target.innerHTML = "終わり！"//japanese_items[rndi];
-   target = document.getElementById("answer_box");
-   target.innerHTML = "";
-   target = document.getElementById("output");
-   target.innerHTML = "";
-  }
-}
- 
-setInterval(timer1, 1000, "終わりです！");
 
   var rndi = Math.floor( Math.random() * japanese_items.length );
     var kanswer=korean_items[rndi];
@@ -96,7 +78,6 @@ setInterval(timer1, 1000, "終わりです！");
     <div id="timer_disp"></div>
     
     </div>
-        <a href="page2.html">もどる</a>
-
+    <a href="page2.html">もどる</a>
   </body>
  </html>

@@ -18,25 +18,6 @@
   //console.log('出力結果: ' + japanese_items.length);
   //console.log('korean_items[0]:' + korean_items[0]);
 
-var count = 0;
- 
-function timer1(){
-  count += 1;
-  target = document.getElementById("timer_disp");
-  target.innerHTML = count;
-  if (count>=250) {
-   target = document.getElementById("timer_disp");
-   target.innerHTML = "";
-   target = document.getElementById("japanese_items_disp");
-   target.innerHTML = "終わり！"//japanese_items[rndi];
-   target = document.getElementById("answer_box");
-   target.innerHTML = "";
-   target = document.getElementById("output");
-   target.innerHTML = "";
-  }
-}
- 
-setInterval(timer1, 1000, "終わりです！");
 
   var rndi = Math.floor( Math.random() * japanese_items.length );
     var kanswer=korean_items[rndi];
