@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+ <html>
+  <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta http-equiv="Content-Style-Type" content="text/css">
+   <meta name="viewport" content="width=device-width,initial-scale=l">
+   <meta http-equiv="content-language" content="ja">
+   <link rel="SHORTCUT ICON" href="../favicon.ico">
+   <link rel="stylesheet" href="../style.css" type="text/css">
+   <script type="text/javascript" src="../test.js"></script>
+   <title>2021-11-10 背景なし時間制限なし,闇鍋</title>
+  </head>
+  <body style="background-image:url('bg.png');background-size:cover;">
+  
+  <script>
+  var korean_items = ['멋지다','뎃있고','하다','하고','교실이고','어렵지만','먹었지만','물건이','어떻습니까','어떤','그리고','드시겠습니까','먹겠습니다','두 달 전에','오기 전에','온다','찾아가기존에','찾아가다','파쁘시 않십니다','일울 하지 않십까','먹지 않십까','아르바이트를 하기 때문에','없기 때문에','우표','주차정','자동처','대','라면','쉬고기','그램','갈비','인분','영말','김밥','만들다','알다','가게','열다','살다','편위점','볼펜','발다','놀다'];
+  var japanese_items = ['素敵だ','素敵ですし(-고)','する','するし(-고)','教室で(-고)','難しいですが','食べましたが','いいですが、','どうですか?','どんな(-名詞)','そして','召し上がりますか','食べます','2ヶ月前に(名詞には)','来る前に(動詞には)','来る','訪問する前に','訪問する','忙しくありません','働かないんですか','食べませんでした','アルバイトをするので','ないので','切手','駐車場','車、自動車','-台','ラーメン','牛肉','グラム','カルビ','～人分','靴下','キムパブ','作る','知る','店','開ける','住む','コンビニ','ボールペン','	売る','遊ぶ'];
+  var alphabet_items = ['meos-ji-da','des-iss-go','ha-da','ha-go','gyo-sir-i-go','eo-ryeob-ji-man','meog-eoss-ji-man','mur-geon-i','eo-tteoh-seub-ni-kka','eo-tteon','geu-ri-go','deu-si-gess-seub-ni-kka','meog-gess-seub-ni-da','du-dar-jeon-e(전에)','o-gi-jeon-e(전에)','on-da','chaj-a-ga-gi-jon-e','chaj-a-ga-da','pa-ppeu-si-anh-sib-ni-da','ir-ur-ha-ji-anh-sib-ni-kka','meog-ji-anh-sib-ni-da','a-reu-ba-i-teu-reur-hagi-ttae-mun-e(-기 때문에)','eobs-gi-ttae-mun-e','u-pyo','ju-cha-jeong','ja-dong-cheo','dae','ra-myeon','swi-go-gi','geu-raem','gar-bi','in-bun','yeong-mar','gim-bab','man-deur-da','ar-da','ga-ge','yeor-da','sar-da','pyeon-wi-jeom','bor-pen','bar-da','nor-da'];
+  //console.log('出力結果: ' + japanese_items.length);
+  //console.log('korean_items[0]:' + korean_items[0]);
+
+ 
+
+  var rndi = Math.floor( Math.random() * japanese_items.length );
+    var kanswer=korean_items[rndi];
+    var janswer=japanese_items[rndi];
+    var hint=alphabet_items[rndi];
+  //console.log(rndi);
+
+  window.onload = function(){
+   target = document.getElementById("japanese_items_disp");
+   target.innerHTML = janswer + "  <span style=\"color:#ffffff;\">"+hint+"</span>"
+  }
+
+  function OnButtonClick() {
+   var yourans = document.getElementById("answer_text").value;
+   //console.log(yourans);
+   console.log(korean_items[rndi]);
+   if (yourans == kanswer) {//korean_items[rndi]) {
+    target = document.getElementById("output");
+    target.innerHTML = "正解！<br><input type=\"button\" value=\"次の問題へ\" onclick=\"clicked_again();\">";
+    japanese_items.splice( rndi,1 );
+    korean_items.splice( rndi,1 );
+    console.log(korean_items);
+   } else {
+    target = document.getElementById("output");
+    target.innerHTML = "不正解！答えは……<br>"+kanswer+"を入力しよう";
+   }
+  }
+  
+  function clicked_again() {
+    if (japanese_items.length <= 0) {
+     target = document.getElementById("japanese_items_disp");
+     target.innerHTML = "終わり！"//japanese_items[rndi];
+     target = document.getElementById("answer_box");
+     target.innerHTML = "";
+     target = document.getElementById("output");
+     target.innerHTML = "";
+    } else {
+    rndi = Math.floor( Math.random() * japanese_items.length );
+    console.log(rndi);
+    kanswer=korean_items[rndi];
+    janswer=japanese_items[rndi];
+    hint=alphabet_items[rndi];
+    target = document.getElementById("japanese_items_disp");
+    target.innerHTML = janswer + "<span style=\"color:#ffffff;\">"+hint+"</span>" ;//japanese_items[rndi];
+    target = document.getElementById("answer_box");
+    target.innerHTML = "<input type=\"text\" value=\"\" id=\"answer_text\"><input type=\"button\" value=\"チェック\" onclick=\"OnButtonClick();\">";
+    target = document.getElementById("output");
+    target.innerHTML = "";
+    console.log(kanswer);
+    }
+  }
+  
+  </script>
+<div id="bodycover" style="background-color: rgba(255,255,255,0.5);text-align:center;font-size:20px;">
+  <div id="japanese_items_disp"></div>
+  <div id="answer_box"><input type="text" value="" id="answer_text">
+  <input type="button" value="チェック" onclick="OnButtonClick();"></div>
+  <div id="output"></div>
+    <div id="timer_disp"></div>
+    
+    </div>
+    <a href="../page2.html">もどる</a>
+  </body>
+ </html>
