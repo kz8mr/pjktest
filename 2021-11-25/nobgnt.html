@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+ <html>
+  <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta http-equiv="Content-Style-Type" content="text/css">
+   <meta name="viewport" content="width=device-width,initial-scale=l">
+   <meta http-equiv="content-language" content="ja">
+   <link rel="SHORTCUT ICON" href="../favicon.ico">
+   <link rel="stylesheet" href="../style.css" type="text/css">
+   <script type="text/javascript" src="../test.js"></script>
+   <title>2021-11-25 背景なし時間制限なし,闇鍋</title>
+  </head>
+  <body>
+  
+  <script>
+  var korean_items = ['3시부터 4시까지','작년 12월부터','서울에서 부산까지','30분 후에','식사 후에','사진을 찍은 후에','같이 갑시다','사진을 찍읍시다','테니스를 치지 맙시다','차','양복','잡채','삼겹살','싫어하다','음악','운전','피곤하다','겨울','축구','다녀오다','돌아오다','그저께','제주도','경치','다녀오다','돌아오다','그저께','제주도','경치','비가 오다','감상'];
+  var japanese_items = ['3時から4時まで','昨年12月から','ソウルから釜山まで','30分後に','食事の後に','写真を撮った後に','一緒に行きましょう','写真を撮りましょう。','テニスをするのはやめましょう','お茶','スーツ ','チャプチェ','サムギョプサル','嫌いだ','音楽 ','運転','疲れた','冬','サッカー','行ってくる ','帰ってくる','おととい','チェシュド(濟州島)','景色','行ってくる ','帰ってくる','おととい','チェシュド(濟州島)','景色','雨が降る','鑑賞 '];
+  //console.log('出力結果: ' + japanese_items.length);
+  //console.log('korean_items[0]:' + korean_items[0]);
+
+ 
+
+  var rndi = Math.floor( Math.random() * japanese_items.length );
+    var kanswer=korean_items[rndi];
+    var janswer=japanese_items[rndi];
+    //var hint=alphabet_items[rndi];
+  //console.log(rndi);
+
+  window.onload = function(){
+   target = document.getElementById("japanese_items_disp");
+   target.innerHTML = janswer;// + "  <span style=\"color:#ffffff;\">"+hint+"</span>"
+  }
+
+  function OnButtonClick() {
+   var yourans = document.getElementById("answer_text").value;
+   //console.log(yourans);
+   console.log(korean_items[rndi]);
+   if (yourans == kanswer) {//korean_items[rndi]) {
+    target = document.getElementById("output");
+    target.innerHTML = "正解！<br><input type=\"button\" value=\"次の問題へ\" onclick=\"clicked_again();\">";
+    japanese_items.splice( rndi,1 );
+    korean_items.splice( rndi,1 );
+    console.log(korean_items);
+   } else {
+    target = document.getElementById("output");
+    target.innerHTML = "不正解！答えは……<br>"+kanswer+"を入力しよう";
+   }
+  }
+  
+  function clicked_again() {
+    if (japanese_items.length <= 0) {
+     target = document.getElementById("japanese_items_disp");
+     target.innerHTML = "終わり！"//japanese_items[rndi];
+     target = document.getElementById("answer_box");
+     target.innerHTML = "";
+     target = document.getElementById("output");
+     target.innerHTML = "";
+    } else {
+    rndi = Math.floor( Math.random() * japanese_items.length );
+    console.log(rndi);
+    kanswer=korean_items[rndi];
+    janswer=japanese_items[rndi];
+    //hint=alphabet_items[rndi];
+    target = document.getElementById("japanese_items_disp");
+    target.innerHTML = janswer;// + "<span style=\"color:#ffffff;\">"+hint+"</span>" ;//japanese_items[rndi];
+    target = document.getElementById("answer_box");
+    target.innerHTML = "<input type=\"text\" value=\"\" id=\"answer_text\"><input type=\"button\" value=\"チェック\" onclick=\"OnButtonClick();\">";
+    target = document.getElementById("output");
+    target.innerHTML = "";
+    console.log(kanswer);
+    }
+  }
+  
+  </script>
+<div id="bodycover" style="background-color: rgba(255,255,255,0.5);text-align:center;font-size:20px;">
+  <div id="japanese_items_disp"></div>
+  <div id="answer_box"><input type="text" value="" id="answer_text">
+  <input type="button" value="チェック" onclick="OnButtonClick();"></div>
+  <div id="output"></div>
+    <div id="timer_disp"></div>
+    
+    </div>
+    <a href="../page2.html">もどる</a>
+  </body>
+ </html>
