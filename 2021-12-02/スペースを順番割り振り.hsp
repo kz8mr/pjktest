@@ -1,0 +1,36 @@
+#include "hsp3utf.as"
+screen 0,200,100
+	dialog "txt",16,"テキストファイル"
+	if stat=0 : goto *lcancel
+	loadfile=refstr			; テキストファイル読み込み
+	loadfiledisp=getpath(loadfile,8) //ファイル名のみ
+	chdirs=getpath(loadfile,32) //カレントディレクトリを指定されたファイルのディレクトリに移動
+	chdir chdirs
+
+addingname=""+loadfile+"_01"
+notesel list
+noteload loadfile
+cntmax=noteinfo(0)
+mes cntmax
+repeat cntmax
+	mes cnt
+	noteget curline,cnt
+	split curline,",",a,b,c,d
+	addline=""+a+"_1_"+b+"_2_"+c+"_3_"+d
+	noteadd addline,cnt,1
+loop
+
+repeat
+	exist ""+addingname+".txt"
+	if strsize<0 {
+		notesave ""+addingname+".txt"
+		break
+	} else {
+		addingname=addingname+"_01"
+	}
+loop
+stop
+	
+
+*lcancel
+	end

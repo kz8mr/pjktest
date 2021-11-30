@@ -1,0 +1,48 @@
+#include "hsp3utf.as"
+screen 0,200,100
+	dialog "txt",16,"テキストファイル"
+	if stat=0 : goto *lcancel
+	loadfile=refstr			; テキストファイル読み込み
+	loadfiledisp=getpath(loadfile,8) //ファイル名のみ
+	chdirs=getpath(loadfile,32) //カレントディレクトリを指定されたファイルのディレクトリに移動
+	chdir chdirs
+
+addingname=""+loadfile+"_01"
+notesel list
+noteload loadfile
+korean_items=""
+japanese_items=""
+alphabet_items=""
+cntmax=noteinfo(0)/3
+mes cntmax
+repeat cntmax
+	mes cnt
+	noteget curline,cnt*3
+	korean_items=korean_items+curline
+	mes curline
+	noteget curline,cnt*3+1
+	mes curline
+	japanese_items=japanese_items+curline
+	noteget curline,cnt*3+2
+	mes curline
+	alphabet_items=alphabet_items+curline
+loop
+notesel list_new
+noteadd alphabet_items,0
+noteadd japanese_items,0
+noteadd korean_items,0
+
+repeat
+	exist ""+addingname+".txt"
+	if strsize<0 {
+		notesave ""+addingname+".txt"
+		break
+	} else {
+		addingname=addingname+"_01"
+	}
+loop
+stop
+	
+
+*lcancel
+	end
